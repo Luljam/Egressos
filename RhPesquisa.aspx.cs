@@ -40,7 +40,7 @@ public partial class RhPesquisa : System.Web.UI.Page
                 JsonSerializer json = new JsonSerializer();
                 var objText = reader.ReadToEnd();
                 details = JsonConvert.DeserializeObject<List<Internacao>>(objText);
-
+                //Este é um comentário
                 foreach (Internacao paciente in details)
                 {
                     
