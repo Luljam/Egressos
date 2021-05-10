@@ -44,7 +44,7 @@ public partial class _Default : System.Web.UI.Page
             {
                // Internacao p = new Internacao();
 
-
+                // Adicionado um comentário
              //   p.cd_prontuario = Convert.ToInt32(txtRH.Text); //mudei pra string para testar
                 p.cd_prontuario = Convert.ToInt32(txtRhPaciente.Text);
                 int Numero_RH = Convert.ToInt32(p.cd_prontuario);
