@@ -1,0 +1,53 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <title>Egressos</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script type="text/javascript" src="bootstrap/jquery/jquery-1.4.1.min.js"></script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div>
+            <img class="img-responsive" src="img/HSPM.jpg" />
+            <h3 class="text-center">
+                Sistema Egressos - Nepi</h3>
+        </div>
+        <div>
+            <asp:Menu ID="Menu1" runat="server" Style="text-align: center" Width="408px" Orientation="Horizontal"
+                Height="23px">
+                <Items>
+                    <asp:MenuItem Text="Pagina Principal" Value="Pagina Principal" NavigateUrl="~/Default.aspx">
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Cadastro" Value="Cadastro"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/CausaMorte.aspx" Text="Causa da Morte" Value="Causa da Morte">
+                    </asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+
+    <script type="text/javascript" src="bootstrap/jquery/jquery-3.6.0.js"></script>
+
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="bootstrap/jquery/jquery-1.4.1.min.js"></script>
+
+    <script type="text/javascript" src="bootstrap/jquery/maskedinput-1.2.2.js"></script>
+
+</body>
+</html>
