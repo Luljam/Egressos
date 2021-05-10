@@ -238,9 +238,13 @@ public class InternacaoDAO
                                    ,[acomodacao] ,[st_leito],[dt_internacao] ,[dt_entrada_setor] ,[especialidade],[medico] 
                                    ,[dt_ultimo_evento],[origem],[sg_cid],[tx_observacao],[convenio],[plano] ,[convenio_plano]
                                    ,[crm_profissional],[carater_internacao] ,[origem_internacao],[procedimento],[dt_alta_medica]
-                                   ,[dt_saida_paciente] ,[tipo_alta_medica] ,[vinculo],[orgao],[clinica_alta] ,[cod_procedimento_1]
-                                   ,[cod_procedimento_2],[cod_procedimento_3] ,[cid_pri],[cid_sec] ,[cid_causa_externa],[nome_funcionario_cadastrou]
+                                   ,[dt_saida_paciente] ,[tipo_alta_medica] ,[vinculo],[orgao]
                                     FROM [Egressos].[dbo].[movimentacao_paciente] where prontuario_paciente=" + prontuario;
+
+            // mudei esses campos para tabela mov_paciente_complementar
+
+            //,[clinica_alta] ,[cod_procedimento_1]
+            //                       ,[cod_procedimento_2],[cod_procedimento_3] ,[cid_pri],[cid_sec] ,[cid_causa_externa],[nome_funcionario_cadastrou]
 
             cmm.CommandText = sqlConsulta;
             try
