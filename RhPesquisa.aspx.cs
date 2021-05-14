@@ -43,7 +43,6 @@ public partial class RhPesquisa : System.Web.UI.Page
                 //Este é um comentário
                 foreach (Internacao paciente in details)
                 {
-                    
                     InternacaoDAO.GravaInternacao(paciente);
                 }
             }
@@ -62,7 +61,7 @@ public partial class RhPesquisa : System.Web.UI.Page
 
     private void Bindgrid(int prontuario)
     {
-        GridView1.DataSource = InternacaoDAO.GetListaInternacoePorProntuario(prontuario);
+        GridView1.DataSource = InternacaoDAO.GetListaInternacoePorProntuario(prontuario);        
         GridView1.DataBind();
     }
 }

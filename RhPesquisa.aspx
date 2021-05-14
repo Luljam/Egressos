@@ -30,15 +30,14 @@
     </div>
     <hr />
     <div>
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" 
-            GridLines="None">
-            <RowStyle BackColor="#EFF3FB" />
-            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <EditRowStyle BackColor="#2461BF" />
-            <AlternatingRowStyle BackColor="White" />
+        <asp:GridView ID="GridView1" runat="server" CellPadding="3" ForeColor="Black" 
+            GridLines="Vertical" BackColor="White" BorderColor="#999999" 
+            BorderStyle="Solid" BorderWidth="1px">
+            <FooterStyle BackColor="#CCCCCC" />
+            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+            <AlternatingRowStyle BackColor="#CCCCCC" />
         </asp:GridView>
     </div>
 </asp:Content>
