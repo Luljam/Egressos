@@ -22,10 +22,7 @@ public partial class _Default : System.Web.UI.Page
         string nome_Paciente = Request.QueryString["nomePaciente"];
         string sexo_Paciente = Request.QueryString["sexoPaciente"];
         string idade_Paciente = Request.QueryString["idadePaciente"];
-        string data_Entrada = Request.QueryString["dataEntrada"];
-
-
-      
+        string data_Entrada = Request.QueryString["dataEntrada"];      
 
 
        txtRhPaciente.Text = rh;
@@ -135,7 +132,9 @@ public partial class _Default : System.Web.UI.Page
 
     protected void DDLCidPri_SelectedIndexChanged(object sender, EventArgs e)
     {
-        txtDescricaoCidPri.Text = DDLCidPri.SelectedValue;
+        //txtDescricaoCidPri.Text = DDLCidPri.SelectedItem.ToString();
+        txtDescricaoCidPri.Text = DDLCidPri.SelectedValue.ToString();
     }
-   
+
+    
 }

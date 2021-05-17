@@ -17,7 +17,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Summary description for InternacaoDAO
 /// </summary>
-public class InternacaoDAO
+public class InternacaoDAO 
 {
     public InternacaoDAO()
     {
@@ -132,7 +132,7 @@ public class InternacaoDAO
                     com.Open();
                     commd.ExecuteNonQuery();
                     com.Close();
-
+                    
                 }
                 catch (Exception ex)
                 {
@@ -140,6 +140,7 @@ public class InternacaoDAO
                     Console.WriteLine(erro);
 
                 }
+
             }
         }
     }

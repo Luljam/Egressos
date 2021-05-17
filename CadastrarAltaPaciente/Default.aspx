@@ -11,7 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- <div class="container-fluid"> -->
-    <div class="jumbotron">        
+    <div class="jumbotron">
         <!-- Form alinhado -->
         <%--<div class="row">
             <asp:Label ID="Label4" class="form-label" runat="server" Text="Digite RH:"></asp:Label>
@@ -90,9 +90,14 @@
                 Enf. Leito:
                 <asp:TextBox ID="txtEnfLeito" runat="server" class="form-control"></asp:TextBox>
             </div>
-            <div class="col-3">
-                Clinica Alta:<asp:DropDownList ID="DDLClinicaAlta" runat="server">
+            <div class="col-2">
+                Clinica Alta:
+                <asp:DropDownList ID="DDLClinicaAlta" runat="server" class="form-control" DataSourceID="SqlDataSource2"
+                    DataTextField="descricao" DataValueField="idClinica">
                 </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>"
+                    SelectCommand="SELECT [descricao], [idClinica] FROM [clinicaAlta] ORDER BY [descricao]">
+                </asp:SqlDataSource>
             </div>
         </div>
         <div class="row">
@@ -149,17 +154,17 @@
         <div class="row">
             <div class="col-1">
                 Cid Pri:
-                <asp:DropDownList ID="DDLCidPri" runat="server" class="form-control" 
-                    DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
-                    DataValueField="cid_numero" >
-                </asp:DropDownList>                
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                    ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>" 
+                <asp:DropDownList ID="DDLCidPri" runat="server" class="form-control" DataSourceID="SqlDataSource1"
+                    DataTextField="cid_numero" DataValueField="descricao_cid" 
+                    AutoPostBack="True" onselectedindexchanged="DDLCidPri_SelectedIndexChanged">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>"
                     SelectCommand="SELECT * FROM [cid_obito]"></asp:SqlDataSource>
             </div>
             <div class="col-4">
                 <asp:Label ID="Label6" runat="server" Text="Descrição"></asp:Label>
-                <asp:TextBox ID="txtDescricaoCidPri" runat="server" class="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtDescricaoCidPri" runat="server" class="form-control" 
+                    AutoPostBack="True"></asp:TextBox>
             </div>
         </div>
         <div class="row">
@@ -206,8 +211,6 @@
                 <asp:TextBox ID="txtDescricaoCausaExt" runat="server" class="form-control"></asp:TextBox>
             </div>
         </div>
-        
-       
         <!--Button CADASTRAR-->
         <div class="nav justify-content-center m-2">
             <asp:Button ID="btnCadastrar" runat="server" class="btn btn-primary" Text="Cadastrar"

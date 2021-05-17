@@ -31,8 +31,8 @@
     <hr />
     <div>
         <asp:GridView ID="GridView1" runat="server" CellPadding="3" ForeColor="Black" 
-            GridLines="Vertical" BackColor="White" BorderColor="#999999" 
-            BorderStyle="Solid" BorderWidth="1px">
+            GridLines="None" BackColor="White" BorderColor="#999999" 
+            BorderStyle="Solid" BorderWidth="1px" EnableTheming="True">
             <FooterStyle BackColor="#CCCCCC" />
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />

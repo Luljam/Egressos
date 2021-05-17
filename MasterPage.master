@@ -20,19 +20,23 @@
     <form id="form1" runat="server">
     <div>
         <div>
-            <img class="img-responsive" src="img/HSPM.jpg" />
-            <h3 class="text-center">
+            <img src="img/HSPM.jpg" />
+            <h3 class="text-center"> 
                 Sistema Egressos - Nepi</h3>
         </div>
         <div>
-            <asp:Menu ID="Menu1" runat="server" Style="text-align: center" Width="408px" Orientation="Horizontal"
-                Height="23px">
+            <asp:Menu ID="Menu1" runat="server" Style="text-align: center" Width="840px" Orientation="Horizontal"
+                Height="26px">
                 <Items>
                     <asp:MenuItem Text="Pagina Principal" Value="Pagina Principal" NavigateUrl="~/Default.aspx">
                     </asp:MenuItem>
-                    <asp:MenuItem Text="Cadastro" Value="Cadastro"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/CausaMorte.aspx" Text="Causa da Morte" Value="Causa da Morte">
+                    <asp:MenuItem Text="Cadastro" Value="Cadastro" 
+                        NavigateUrl="~/CadastrarAltaPaciente/Default.aspx"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/CausaMorte/CausaMorte.aspx" Text="Causa da Morte" 
+                        Value="Causa da Morte">
                     </asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/ClinicaAltaGerenciar/ClinicaAltaGerenciar.aspx" 
+                        Text="Cadastrar Clinica" Value="Cadastrar Clinica"></asp:MenuItem>
                 </Items>
             </asp:Menu>
         </div>
