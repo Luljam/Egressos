@@ -21,6 +21,10 @@ public class Internacao
     public int nr_seq { get; set; }
     public int cd_prontuario { get; set; } // Mudei pra string para poder testar
     public string nm_paciente { get; set; }
+
+    public string dt_internacao { get; set; }
+
+    
     public string in_sexo { get; set; }
     public int nr_idade { get; set; }
     public string nr_quarto { get; set; }
@@ -30,7 +34,7 @@ public class Internacao
     public string nm_unidade_funcional { get; set; }
     public string nm_acomodacao { get; set; }
     public string st_leito { get; set; }   
-    public string dt_internacao { get; set; }
+   // public string dt_internacao { get; set; }
     public string dt_entrada_setor { get; set; }
     public string nm_especialidade { get; set; }
     public string nm_medico { get; set; }
