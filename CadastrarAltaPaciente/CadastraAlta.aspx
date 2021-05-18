@@ -1,16 +1,17 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CadastraAlta.aspx.cs" Inherits="CadastrarAltaPaciente_CadastraAlta" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+    CodeFile="CadastraAlta.aspx.cs" Inherits="CadastrarAltaPaciente_CadastraAlta"
+    Title="Untitled Page" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
- <style type="text/css">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <style type="text/css">
         input
         {
             text-align: left;
         }
     </style>
-   
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<!-- <div class="container-fluid"> -->
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <!-- <div class="container-fluid"> -->
     <div class="jumbotron">
         <!-- Form alinhado -->
         <%--<div class="row">
@@ -25,8 +26,7 @@
         <!-- <div class="shadow p-3 mb-5 bg-white rounded"> -->
         <div class="row">
             <div class="col-2">
-                <asp:Label ID="Label2" class="control-label" runat="server" 
-                    Text="Digite Nº Internação:"></asp:Label>
+                <asp:Label ID="Label2" class="control-label" runat="server" Text="Digite Nº Internação:"></asp:Label>
             </div>
         </div>
         <div class="row">
@@ -36,8 +36,8 @@
                 <!-- required serve para deixar o campo Obrigatório-->
             </div>
             <div class="col-2">
-                <asp:Button ID="btnPesquisa" class="btn btn-success" runat="server" 
-                    Text="Pesquisar" onclick="btnPesquisa_Click" />
+                <asp:Button ID="btnPesquisa" class="btn btn-success" runat="server" Text="Pesquisar"
+                    OnClick="btnPesquisa_Click" />
             </div>
         </div>
         <div class="row">
@@ -102,31 +102,35 @@
                 </asp:SqlDataSource>
             </div>
         </div>
+        <hr />
         <div class="row">
             <div class="col-1">
-                Proc_1
-                <asp:TextBox ID="txbcid" runat="server" class="form-control"></asp:TextBox>
-               
-            </div>
-            <div class="col-1">
-            <label>baaggggggggaa</label>
-             <asp:Button ID="pesquisarCid" runat="server"  Text="Pesquisar" 
-                    onclick="pesquisarCid_Click" />
-            </div>
-            <div class="col-4">
-                <asp:Label ID="Label1" runat="server" Text="Descrição"></asp:Label>
-                <asp:TextBox ID="txtDescricaoProc_1" runat="server" class="form-control"></asp:TextBox>
+                <asp:Label ID="lbCID" class="control-label" runat="server" Text="CID:"></asp:Label>
             </div>
             <div class="col-2">
-                Data Cir_1
+                <asp:Label ID="Label1" class="control-label" runat="server" Text="TIPO (primario, secundário, terciário)"></asp:Label>
+            </div>
+             
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <asp:TextBox ID="txbcid" runat="server" class="form-control"></asp:TextBox>
+            </div>
+            
+            <div class="col-2">
+               
                 <asp:TextBox ID="txtDtCir_1" runat="server" class="form-control"></asp:TextBox>
+            </div>
+            <div class="col-1">
+                <asp:Button ID="pesquisarCid" runat="server" Text="Pesquisar" OnClick="pesquisarCid_Click"
+                    class="btn btn-success" />
             </div>
         </div>
         <div id="gridCirurgias">
-            <asp:GridView ID="gvListaProcedimentos" runat="server">
+            <asp:GridView ID="gvListaCID" runat="server" class="table">
             </asp:GridView>
         </div>
-        
+        <hr />
         <!--Button CADASTRAR-->
         <div class="nav justify-content-center m-2">
             <asp:Button ID="btnCadastrar" runat="server" class="btn btn-primary" Text="Cadastrar"
@@ -135,4 +139,3 @@
     </div>
     <!--</div>-->
 </asp:Content>
-

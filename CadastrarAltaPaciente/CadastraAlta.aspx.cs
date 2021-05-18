@@ -21,16 +21,13 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
 
     protected void btnPesquisa_Click(object sender, EventArgs e)
     {
-        //  string numeroInt = txtSeqPaciente.Text;
-
+        int Nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
         using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
+        {
             try
             {
-                int Nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
                 string strQuery = "";
-
                 SqlCommand commd = new SqlCommand(strQuery, com);
-
                 strQuery = @"SELECT [nr_seq]                                   
                                    ,[nome]
                                    ,[sexo]
@@ -49,7 +46,6 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
                 SqlDataReader dr = commd.ExecuteReader();
                 if (dr.Read())
                 {
-
                     txtNome.Text = dr.GetString(1);
                     txtSexo.Text = dr.GetString(2);
                     txtDtEntrada.Text = dr.GetString(3);
@@ -59,13 +55,13 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
                     txtLeito.Text = dr.GetString(7);
                     txtEnfLeito.Text = dr.GetString(8);
                 }
-
             }
             catch (Exception ex)
             {
-
                 string erro = ex.Message;
             }
+        }
+        CarregaGrid(Nr_seq);
     }
 
     protected void Button2_Click(object sender, EventArgs e)
@@ -75,77 +71,23 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
             try
             {
                 Internacao p = new Internacao();
-
-                // Adicionado um comentário
-                //   p.cd_prontuario = Convert.ToInt32(txtRH.Text); //mudei pra string para testar
                 p.cd_prontuario = Convert.ToInt32(txtSeqPaciente.Text);
                 int Numero_RH = Convert.ToInt32(p.cd_prontuario);
-
-
                 p.nm_paciente = txtNome.Text;
-                //   p.dt_nascimento = txtDtNasc.Text;
-                //    p.sexo= txtSexo.Text;
-                //p.dt_internacao; // Todo: colocar a data da internação
                 p.dt_entrada_setor = txtDtEntrada.Text;
-                // p.dt_saida_paciente = txtDtSaida.Text;
-                //  p.Motivo_Saida=DDLmotivoSaida.SelectedValue;
-                // p.H_D=TxtH_D.Text;
                 p.nm_clinica = txtClinica.Text;
 
                 p.nr_leito = txtLeito.Text;
-                //  p.Enf_Leito=txtEnfLeito.Text;
-                //   p.Clinica_Alta=DDLClinicaAlta.SelectedValue;
-                //p.Proc_1=DDLProc_1.SelectedValue;
-                //p.Proc_2=DDLProc_2.SelectedValue;
-                //p.Proc_3=DDLProc_3.SelectedValue;
-                //p.DESCR_C_C=txtDesc_c_c.Text;
-                //p.Cid_pri=DDLCidPri.SelectedValue;
-                //p.Cid_Sec=DDLCidSec.SelectedValue;
-                //p.Cid_Ass1=DDLcidAss1.SelectedValue;
-                //p.Cid_Ass2=DDLcidAss2.SelectedValue;
-                //p.CausaExt=DDLcausaExt.SelectedValue;
-
-                //p.Causa_Obito_P1_A=txtDescricaoCausaMorteA;
-                //p.Causa_Obito_P1_B=txtDescricaoCausaMorteB;
-                //p.Causa_Obito_P1_C=txtDescricaoCausaMorteC;
-                //p.Causa_Obito_P1_D=txtDescricaoCausaMorteD;
-                //p.Causa_Obito_P2_A=txtDescricaoCausaMorteParte2A;
-                //p.Causa_Obito_P2_B=txtDescricaoCausaMorteParte2B;
-
-                //p.Encaminhamento_Do_Cadaver=DDLencaminhamentoCadaver.SelectedValue;
-                //p.CausaProv_Obito=txtCausaProvObito.Text;
-                //p.Obito_OBS=txtObservacaoCausaObito.Text;
-
-
-
-
-
 
                 string strQuery = "";
-                //  string conStr = @"Data Source=hspmins4;Initial Catalog=ControleDocumentos;User Id=h010994;Password=soundgarden ";
-
-                // SqlConnection com = new SqlConnection(conStr);
                 SqlCommand commd = new SqlCommand(strQuery, com);
 
-                strQuery = @"INSERT INTO [Egressos].[dbo].[movimentacao_paciente]
-            ([prontuario_paciente],[leito],[clinica],[dt_entrada_setor])"
-                    //           ,[especialidade],[medico],[dt_ultimo_evento],[origem],[sg_cid],[tx_observacao],[convenio]
-                    //           ,[plano],[convenio_plano],[crm_profissional],[carater_internacao],[origem_internacao],[procedimento],[dt_alta_medica],[dt_saida_paciente],[tipo_alta_medica]
-                    //           ,[vinculo],[orgao],[clinica_alta],[cod_procedimento_1],[cod_procedimento_2],[cod_procedimento_3],[cid_pri],[cid_sec],[cid_causa_externa],[obito_p1_a]
-                    //           ,[obito_p1_b],[obito_p1_c],[obito_p1_d],[obito_p2_a],[obito_p2_b],[enc_cadaver],[causa_prov_obito],[obs],[dt_cir_1],[dt_cir_2],[dt_cir_3],[descr_cc]
-                    //           ,[cid_associado_1],[cid_associado_2],[hipotese_diagnostica],[nome_funcionario_cadastrou])"
-
+                strQuery = "INSERT INTO [Egressos].[dbo].[movimentacao_paciente] ([prontuario_paciente],[leito],[clinica],[dt_entrada_setor])"
                   + " VALUES (@rh,@leito,@clinica,@dtEntradaSetor)";
-
-
                 commd.Parameters.Add("@rh", SqlDbType.Int).Value = Numero_RH;
                 commd.Parameters.Add("@leito", SqlDbType.NVarChar).Value = p.nr_leito;
                 commd.Parameters.Add("@clinica", SqlDbType.NVarChar).Value = p.nm_clinica;
                 commd.Parameters.Add("@dtEntradaSetor", SqlDbType.NVarChar).Value = p.dt_entrada_setor;
-
-
-                //-------------------------------------------------------------------------------//
-
 
                 commd.CommandText = strQuery;
                 com.Open();
@@ -164,28 +106,21 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
         }
     }
 
-
-
     protected void pesquisarCid_Click(object sender, EventArgs e)
     {
         CID c = new CID();
         c = CidRepository.GetCIDPorCodigo(txbcid.Text);
-        txtDescricaoProc_1.Text = c.Descricao;
-
         int nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
-        string clinica = DDLClinicaAlta.SelectedValue;
-        string codProced = c.Cid_Numero;
-        CidRepository.GravaCidPaciente(nr_seq, clinica, codProced);
+        string tipo = "Primario"; // depois carregar um dropdow com os tipos
+        string codCid = c.Cid_Numero;
+        CidRepository.GravaCidPaciente(nr_seq, codCid, tipo);
 
         CarregaGrid(nr_seq);
     }
 
     private void CarregaGrid(int nr_seq)
     {
-        gvListaProcedimentos.DataSource = CidRepository.CarregaCIDInternacao(nr_seq);
-        gvListaProcedimentos.DataBind();
+        gvListaCID.DataSource = CidRepository.CarregaCIDInternacao(nr_seq);
+        gvListaCID.DataBind();
     }
-
-
-
 }

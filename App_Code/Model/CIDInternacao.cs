@@ -13,11 +13,11 @@ using System.Xml.Linq;
 /// <summary>
 /// Summary description for ProcedimentoInternacao
 /// </summary>
-public class ProcedimentoInternacao
+public class CIDInternacao
 {
     public int Id { get; set; }
     public int Nr_Seq { get; set; }
-    public string Clinica { get; set; }
-    public string Cod_Procedimento { get; set; }
-    public string usuario { get; set; }
+    public string Tipo { get; set; }
+    public string Cod_CID { get; set; }
+    public string Usuario { get; set; }
 }

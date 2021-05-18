@@ -80,21 +80,21 @@ public class CidRepository
         return c;
     }
 
-    public static void GravaCidPaciente(int nr_seq, string clinica, string codProced)
+    public static void GravaCidPaciente(int nr_seq, string cod_cid, string tipo)
     {
         string funcionario = "Junior";
         using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
             try
             {
-                string strQuery = @"INSERT INTO [Egressos].[dbo].[mov_paciente_complementar]
-                                    ([nr_seq],[clinica_alta],[cod_procedimento],[nome_funcionario_cadastrou])"
-                                    + " VALUES (@nr_seq,@clinica_alta,@cod_procedimento,@nome_funcionario_cadastrou)";
+                string strQuery = @"INSERT INTO [Egressos].[dbo].[cid_intenacao]
+                                    ([nr_seq],[cod_cid],[tipo],[nome_funcionario_cadastrou])"
+                                    + " VALUES (@nr_seq,@cod_cid,@tipo,@nome_funcionario_cadastrou)";
 
                 SqlCommand commd = new SqlCommand(strQuery, com);
                 commd.Parameters.Add("@nr_seq", SqlDbType.Int).Value = nr_seq;
-                commd.Parameters.Add("@clinica_alta", SqlDbType.VarChar).Value = clinica;
-                commd.Parameters.Add("@cod_procedimento", SqlDbType.VarChar).Value = codProced;
+                commd.Parameters.Add("@cod_cid", SqlDbType.VarChar).Value = cod_cid;
+                commd.Parameters.Add("@tipo", SqlDbType.VarChar).Value = tipo;
                 commd.Parameters.Add("@nome_funcionario_cadastrou", SqlDbType.VarChar).Value = funcionario;
 
                 commd.CommandText = strQuery;
@@ -111,12 +111,12 @@ public class CidRepository
 
     public static object CarregaCIDInternacao(int nr_seq)
     {
-        var lista = new List<ProcedimentoInternacao>();
+        var lista = new List<CIDInternacao>();
 
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
 
-            string sqlConsulta = "SELECT *  FROM [Egressos].[dbo].[mov_paciente_complementar] WHERE nr_seq = "+ nr_seq ;
+            string sqlConsulta = "SELECT * FROM [Egressos].[dbo].[cid_intenacao] WHERE nr_seq = " + nr_seq;
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = sqlConsulta;
             try
@@ -126,13 +126,13 @@ public class CidRepository
 
                 while (dr1.Read())
                 {
-                    ProcedimentoInternacao p = new ProcedimentoInternacao();
+                    CIDInternacao p = new CIDInternacao();
 
                     p.Id = dr1.GetInt32(0);
                     p.Nr_Seq = dr1.GetInt32(1);
-                    p.Clinica = dr1.GetString(2);
-                    p.Cod_Procedimento = dr1.GetString(3);
-                    p.usuario = dr1.GetString(4);
+                    p.Cod_CID = dr1.GetString(2);
+                    p.Tipo = dr1.GetString(3);
+                    p.Usuario = dr1.GetString(4);
                     lista.Add(p);
                 }
             }
