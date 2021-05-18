@@ -8,6 +8,7 @@
             text-align: left;
         }
     </style>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- <div class="container-fluid"> -->
