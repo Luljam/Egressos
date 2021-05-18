@@ -14,7 +14,7 @@ using System.Data.SqlClient;
 
 public partial class _Default : System.Web.UI.Page
 {
-    Internacao p = new Internacao();
+   
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -33,12 +33,13 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void btnPesquisa_Click(object sender, EventArgs e)
     {
-      //  string numeroInt = txtSeqPaciente.Text;
+        
+        int Nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
         
         using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
             try
             {
-                int Nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
+                
                 string strQuery = "";
               
                 SqlCommand commd = new SqlCommand(strQuery, com);
@@ -86,7 +87,7 @@ public partial class _Default : System.Web.UI.Page
         {
             try
             {
-               // Internacao p = new Internacao();
+                Internacao p = new Internacao();
 
                 // Adicionado um comentário
              //   p.cd_prontuario = Convert.ToInt32(txtRH.Text); //mudei pra string para testar

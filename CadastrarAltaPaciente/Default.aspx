@@ -94,23 +94,21 @@
             </div>
             <div class="col-2">
                 Clinica Alta:
-                <asp:DropDownList ID="DDLClinicaAlta" runat="server" class="form-control" DataSourceID="SqlDataSource2"
+                <asp:DropDownList ID="DDLClinicaAlta" runat="server" class="form-control" 
                     DataTextField="descricao" DataValueField="idClinica">
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>"
-                    SelectCommand="SELECT [descricao], [idClinica] FROM [clinicaAlta] ORDER BY [descricao]">
-                </asp:SqlDataSource>
             </div>
         </div>
-        <div class="row">
+      <div class="row">
             <div class="col-2">
                 Proc_1
                 <asp:DropDownList ID="DDLProc_1" runat="server" class="form-control" 
-                    AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="Procedimento" 
-                    DataValueField="Descrição" 
+                    DataTextField="Procedimento" 
+                    DataValueField="Descrição" AutoPostBack="True" 
+                    DataSourceID="SqlDataSource1" 
                     onselectedindexchanged="DDLProc_1_SelectedIndexChanged">
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>" 
                     SelectCommand="SELECT [Procedimento], [Descrição] FROM [procedimentoCir] ORDER BY [Procedimento]">
                 </asp:SqlDataSource>
@@ -128,9 +126,10 @@
             <div class="col-2">
                 Proc_2
                 <asp:DropDownList ID="DDLProc_2" runat="server" class="form-control" 
-                    AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="Procedimento" 
-                    DataValueField="Descrição" 
-                    onselectedindexchanged="DDLProc_2_SelectedIndexChanged">
+                    DataTextField="Procedimento" 
+                    DataValueField="Descrição" AutoPostBack="True" 
+                    DataSourceID="SqlDataSource1" 
+                    onselectedindexchanged="DDLProc_2_SelectedIndexChanged" >
                 </asp:DropDownList>
             </div>
             <div class="col-4">
@@ -146,8 +145,9 @@
             <div class="col-2">
                 Proc_3
                 <asp:DropDownList ID="DDLProc_3" runat="server" class="form-control" 
-                    AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="Procedimento" 
-                    DataValueField="Descrição" 
+                    DataTextField="Procedimento" 
+                    DataValueField="Descrição" AutoPostBack="True" 
+                    DataSourceID="SqlDataSource1" 
                     onselectedindexchanged="DDLProc_3_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
@@ -167,15 +167,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
                 Cid Pri:
-                <asp:DropDownList ID="DDLCidPri" runat="server" class="form-control" DataSourceID="SqlDataSource1"
+                <asp:DropDownList ID="DDLCidPri" runat="server" class="form-control"
                     DataTextField="cid_numero" DataValueField="descricao_cid" 
-                    AutoPostBack="True" onselectedindexchanged="DDLCidPri_SelectedIndexChanged">
+                    AutoPostBack="True" DataSourceID="SqlDataSource2" 
+                    onselectedindexchanged="DDLCidPri_SelectedIndexChanged">
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>"
-                    
-                    SelectCommand="SELECT [cid_numero], [descricao_cid] FROM [cid_obito] ORDER BY [cid_numero]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>" 
+                    SelectCommand="SELECT [cid_numero], [descricao_cid] FROM [cid_obito] ORDER BY [cid_numero]">
+                </asp:SqlDataSource>
             </div>
             <div class="col-4">
                 <asp:Label ID="Label6" runat="server" Text="Descrição"></asp:Label>
@@ -184,11 +186,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
                 Cid Sec:
                 <asp:DropDownList ID="DDLCidSec" runat="server" class="form-control" 
-                    AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
-                    DataValueField="descricao_cid" 
+                    DataTextField="cid_numero" 
+                    DataValueField="descricao_cid" DataSourceID="SqlDataSource2" 
                     onselectedindexchanged="DDLCidSec_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
@@ -198,12 +200,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
                 Cid Ass1:
                 <asp:DropDownList ID="DDLcidAss1" runat="server" class="form-control" 
-                    AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
-                    DataValueField="descricao_cid" 
-                    onselectedindexchanged="DDLcidAss1_SelectedIndexChanged">
+                    DataTextField="cid_numero" 
+                    DataValueField="descricao_cid">
                 </asp:DropDownList>
             </div>
             <div class="col-4">
@@ -212,12 +213,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
                 Cid Ass2:
                 <asp:DropDownList ID="DDLcidAss2" runat="server" class="form-control" 
-                    AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
-                    DataValueField="descricao_cid" 
-                    onselectedindexchanged="DDLcidAss2_SelectedIndexChanged">
+                    DataTextField="cid_numero" 
+                    DataValueField="descricao_cid">
                 </asp:DropDownList>
             </div>
             <div class="col-4">
@@ -226,12 +226,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
                 Causa Ext:
                 <asp:DropDownList ID="DDLcausaExt" runat="server" class="form-control" 
-                    AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
-                    DataValueField="descricao_cid" 
-                    onselectedindexchanged="DDLcausaExt_SelectedIndexChanged">
+                    DataTextField="cid_numero" 
+                    DataValueField="descricao_cid">
                 </asp:DropDownList>
             </div>
             <div class="col-4">
