@@ -17,21 +17,68 @@ public partial class _Default : System.Web.UI.Page
     Internacao p = new Internacao();
     protected void Page_Load(object sender, EventArgs e)
     {
-         
-        string rh = Request.QueryString["prontuario"];
-        string nome_Paciente = Request.QueryString["nomePaciente"];
-        string sexo_Paciente = Request.QueryString["sexoPaciente"];
-        string idade_Paciente = Request.QueryString["idadePaciente"];
-        string data_Entrada = Request.QueryString["dataEntrada"];      
+
+       // string rh = Request.QueryString["prontuario"];
+        //string nome_Paciente = Request.QueryString["nomePaciente"];
+        //string sexo_Paciente = Request.QueryString["sexoPaciente"];
+        //string idade_Paciente = Request.QueryString["idadePaciente"];
+        //string data_Entrada = Request.QueryString["dataEntrada"];
 
 
-       txtRhPaciente.Text = rh;
-       txtNome.Text = nome_Paciente;
-       txtSexo.Text = sexo_Paciente;
-       txtDtNasc.Text = idade_Paciente;
-       txtDtEntrada.Text = data_Entrada;
+        //txtSeqPaciente.Text = rh;
+        //txtNome.Text = nome_Paciente;
+        //txtSexo.Text = sexo_Paciente;
+        //txtDtNasc.Text = idade_Paciente;
+        //txtDtEntrada.Text = data_Entrada;
     }
-    
+    protected void btnPesquisa_Click(object sender, EventArgs e)
+    {
+      //  string numeroInt = txtSeqPaciente.Text;
+        
+        using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
+            try
+            {
+                int Nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
+                string strQuery = "";
+              
+                SqlCommand commd = new SqlCommand(strQuery, com);
+
+                strQuery = @"SELECT [nr_seq]                                   
+                                   ,[nome]
+                                   ,[sexo]
+                                   ,[dt_internacao]
+                                   ,[dt_saida_paciente]
+                                   ,[sg_cid]
+                                   ,[clinica]
+                                   ,[leito]
+                                   ,[st_leito]
+                            FROM [Egressos].[dbo].[vw_carregaDadosCadastro]
+                                    where nr_seq=" + Nr_seq+"";
+
+                    commd.CommandText = strQuery;
+                    com.Open();
+                    commd.ExecuteNonQuery();                    
+                    SqlDataReader dr = commd.ExecuteReader();
+                    if (dr.Read())
+                    {
+
+                        txtNome.Text = dr.GetString(1);
+                        txtSexo.Text = dr.GetString(2);  
+                        txtDtEntrada.Text=dr.GetString(3);
+                        txtDtSaida.Text = dr.GetString(4);
+                        TxtH_D.Text = dr.GetString(5);
+                        txtClinica.Text = dr.GetString(6);
+                        txtLeito.Text = dr.GetString(7);
+                        txtEnfLeito.Text = dr.GetString(8);
+                    }
+
+            }
+            catch (Exception ex)
+            {
+                
+                string erro = ex.Message;
+            }
+    }
 
     protected void Button2_Click(object sender, EventArgs e)
     {
@@ -43,7 +90,7 @@ public partial class _Default : System.Web.UI.Page
 
                 // Adicionado um comentário
              //   p.cd_prontuario = Convert.ToInt32(txtRH.Text); //mudei pra string para testar
-                p.cd_prontuario = Convert.ToInt32(txtRhPaciente.Text);
+                p.cd_prontuario = Convert.ToInt32(txtSeqPaciente.Text);
                 int Numero_RH = Convert.ToInt32(p.cd_prontuario);
 
 
@@ -130,11 +177,47 @@ public partial class _Default : System.Web.UI.Page
     }
     // teste issues
 
+   
+
+
+    //procedimento
+    protected void DDLProc_1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtDescricaoProc_1.Text = DDLProc_1.SelectedValue.ToString();
+    }
+    protected void DDLProc_2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtDescricaoProc_2.Text = DDLProc_2.SelectedValue.ToString();
+
+    }
+    protected void DDLProc_3_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtDescricaoProc_3.Text = DDLProc_3.SelectedValue.ToString();
+
+    }
+    //cid
     protected void DDLCidPri_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //txtDescricaoCidPri.Text = DDLCidPri.SelectedItem.ToString();
         txtDescricaoCidPri.Text = DDLCidPri.SelectedValue.ToString();
     }
+    protected void DDLCidSec_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtDescricaoCidSec.Text = DDLCidSec.SelectedValue.ToString();
 
-    
+    }
+    protected void DDLcidAss1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtDescricaoCidAss1.Text = DDLcidAss1.SelectedValue.ToString();
+
+    }
+    protected void DDLcidAss2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtDescricaoAss2.Text = DDLcidAss2.SelectedValue.ToString();
+
+    }
+    protected void DDLcausaExt_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtDescricaoCausaExt.Text = DDLcausaExt.SelectedValue.ToString();
+
+    }
 }

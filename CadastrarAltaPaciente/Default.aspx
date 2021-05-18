@@ -25,17 +25,19 @@
         <!-- <div class="shadow p-3 mb-5 bg-white rounded"> -->
         <div class="row">
             <div class="col-2">
-                <asp:Label ID="Label2" class="control-label" runat="server" Text="Digite RH:"></asp:Label>
+                <asp:Label ID="Label2" class="control-label" runat="server" 
+                    Text="Digite Nº Internação:"></asp:Label>
             </div>
         </div>
         <div class="row">
             <div class="col-2">
                 <!--  <asp:TextBox ID="TextBox1" runat="server" class="form-control" ></asp:TextBox>-->
-                <asp:TextBox ID="txtRhPaciente" runat="server" class="form-control" required></asp:TextBox>
+                <asp:TextBox ID="txtSeqPaciente" runat="server" class="form-control" required></asp:TextBox>
                 <!-- required serve para deixar o campo Obrigatório-->
             </div>
             <div class="col-2">
-                <asp:Button ID="btnPesquisa" class="btn btn-success" runat="server" Text="Pesquisar" />
+                <asp:Button ID="btnPesquisa" class="btn btn-success" runat="server" 
+                    Text="Pesquisar" onclick="btnPesquisa_Click" />
             </div>
         </div>
         <div class="row">
@@ -101,10 +103,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
                 Proc_1
-                <asp:DropDownList ID="DDLProc_1" runat="server" class="form-control">
+                <asp:DropDownList ID="DDLProc_1" runat="server" class="form-control" 
+                    AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="Procedimento" 
+                    DataValueField="Descrição" 
+                    onselectedindexchanged="DDLProc_1_SelectedIndexChanged">
                 </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>" 
+                    SelectCommand="SELECT [Procedimento], [Descrição] FROM [procedimentoCir] ORDER BY [Procedimento]">
+                </asp:SqlDataSource>
             </div>
             <div class="col-4">
                 <asp:Label ID="Label1" runat="server" Text="Descrição"></asp:Label>
@@ -116,9 +125,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
                 Proc_2
-                <asp:DropDownList ID="DDLProc_2" runat="server" class="form-control">
+                <asp:DropDownList ID="DDLProc_2" runat="server" class="form-control" 
+                    AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="Procedimento" 
+                    DataValueField="Descrição" 
+                    onselectedindexchanged="DDLProc_2_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
             <div class="col-4">
@@ -131,9 +143,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
                 Proc_3
-                <asp:DropDownList ID="DDLProc_3" runat="server" class="form-control">
+                <asp:DropDownList ID="DDLProc_3" runat="server" class="form-control" 
+                    AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="Procedimento" 
+                    DataValueField="Descrição" 
+                    onselectedindexchanged="DDLProc_3_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
             <div class="col-4">
@@ -159,7 +174,8 @@
                     AutoPostBack="True" onselectedindexchanged="DDLCidPri_SelectedIndexChanged">
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:EgressosConnectionString %>"
-                    SelectCommand="SELECT * FROM [cid_obito]"></asp:SqlDataSource>
+                    
+                    SelectCommand="SELECT [cid_numero], [descricao_cid] FROM [cid_obito] ORDER BY [cid_numero]"></asp:SqlDataSource>
             </div>
             <div class="col-4">
                 <asp:Label ID="Label6" runat="server" Text="Descrição"></asp:Label>
@@ -170,7 +186,10 @@
         <div class="row">
             <div class="col-1">
                 Cid Sec:
-                <asp:DropDownList ID="DDLCidSec" runat="server" class="form-control">
+                <asp:DropDownList ID="DDLCidSec" runat="server" class="form-control" 
+                    AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
+                    DataValueField="descricao_cid" 
+                    onselectedindexchanged="DDLCidSec_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
             <div class="col-4">
@@ -181,7 +200,10 @@
         <div class="row">
             <div class="col-1">
                 Cid Ass1:
-                <asp:DropDownList ID="DDLcidAss1" runat="server" class="form-control">
+                <asp:DropDownList ID="DDLcidAss1" runat="server" class="form-control" 
+                    AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
+                    DataValueField="descricao_cid" 
+                    onselectedindexchanged="DDLcidAss1_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
             <div class="col-4">
@@ -192,7 +214,10 @@
         <div class="row">
             <div class="col-1">
                 Cid Ass2:
-                <asp:DropDownList ID="DDLcidAss2" runat="server" class="form-control">
+                <asp:DropDownList ID="DDLcidAss2" runat="server" class="form-control" 
+                    AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
+                    DataValueField="descricao_cid" 
+                    onselectedindexchanged="DDLcidAss2_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
             <div class="col-4">
@@ -203,7 +228,10 @@
         <div class="row">
             <div class="col-1">
                 Causa Ext:
-                <asp:DropDownList ID="DDLcausaExt" runat="server" class="form-control">
+                <asp:DropDownList ID="DDLcausaExt" runat="server" class="form-control" 
+                    AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="cid_numero" 
+                    DataValueField="descricao_cid" 
+                    onselectedindexchanged="DDLcausaExt_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
             <div class="col-4">

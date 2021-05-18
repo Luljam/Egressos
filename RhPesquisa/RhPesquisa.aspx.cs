@@ -56,12 +56,14 @@ public partial class RhPesquisa : System.Web.UI.Page
             string err1 = ex1.Message;
         }
 
-        Bindgrid(prontuario);
+      //  Bindgrid(prontuario);
     }
 
-    private void Bindgrid(int prontuario)
-    {
-        GridView1.DataSource = InternacaoDAO.GetListaInternacoePorProntuario(prontuario);        
-        GridView1.DataBind();
-    }
+    //private void Bindgrid(int prontuario)
+    //{
+    //    GridView1.DataSource = InternacaoDAO.GetListaInternacoePorProntuario(prontuario);        
+    //    GridView1.DataBind();
+    //}
+
+    
 }
