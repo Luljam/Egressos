@@ -23,6 +23,7 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
     {
         int Nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
         using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
+        {
             try
             {
                 string strQuery = "";
@@ -59,6 +60,8 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
             {
                 string erro = ex.Message;
             }
+        }
+        CarregaGrid(Nr_seq);
     }
 
     protected void Button2_Click(object sender, EventArgs e)
@@ -107,19 +110,17 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
     {
         CID c = new CID();
         c = CidRepository.GetCIDPorCodigo(txbcid.Text);
-        txtDescricaoProc_1.Text = c.Descricao;
-
         int nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
-        string clinica = DDLClinicaAlta.SelectedValue;
-        string codProced = c.Cid_Numero;
-        CidRepository.GravaCidPaciente(nr_seq, clinica, codProced);
+        string tipo = "Primario"; // depois carregar um dropdow com os tipos
+        string codCid = c.Cid_Numero;
+        CidRepository.GravaCidPaciente(nr_seq, codCid, tipo);
 
         CarregaGrid(nr_seq);
     }
 
     private void CarregaGrid(int nr_seq)
     {
-        gvListaProcedimentos.DataSource = CidRepository.CarregaCIDInternacao(nr_seq);
-        gvListaProcedimentos.DataBind();
+        gvListaCID.DataSource = CidRepository.CarregaCIDInternacao(nr_seq);
+        gvListaCID.DataBind();
     }
 }
