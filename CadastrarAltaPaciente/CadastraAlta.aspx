@@ -7,6 +7,7 @@
             text-align: left;
         }
     </style>
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <!-- <div class="container-fluid"> -->
@@ -102,10 +103,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
+            <div class="col-1">
                 Proc_1
-                <asp:DropDownList ID="DDLProc_1" runat="server" class="form-control">
-                </asp:DropDownList>
+                <asp:TextBox ID="txbcid" runat="server" class="form-control"></asp:TextBox>
+               
+            </div>
+            <div class="col-1">
+            <label>baaggggggggaa</label>
+             <asp:Button ID="pesquisarCid" runat="server"  Text="Pesquisar" 
+                    onclick="pesquisarCid_Click" />
             </div>
             <div class="col-4">
                 <asp:Label ID="Label1" runat="server" Text="Descrição"></asp:Label>
@@ -115,6 +121,10 @@
                 Data Cir_1
                 <asp:TextBox ID="txtDtCir_1" runat="server" class="form-control"></asp:TextBox>
             </div>
+        </div>
+        <div id="gridCirurgias">
+            <asp:GridView ID="gvListaProcedimentos" runat="server">
+            </asp:GridView>
         </div>
         
         <!--Button CADASTRAR-->

@@ -18,6 +18,7 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
     {
 
     }
+
     protected void btnPesquisa_Click(object sender, EventArgs e)
     {
         //  string numeroInt = txtSeqPaciente.Text;
@@ -73,7 +74,7 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
         {
             try
             {
-                 Internacao p = new Internacao();
+                Internacao p = new Internacao();
 
                 // Adicionado um comentário
                 //   p.cd_prontuario = Convert.ToInt32(txtRH.Text); //mudei pra string para testar
@@ -162,5 +163,29 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
             }
         }
     }
+
+
+
+    protected void pesquisarCid_Click(object sender, EventArgs e)
+    {
+        CID c = new CID();
+        c = CidRepository.GetCIDPorCodigo(txbcid.Text);
+        txtDescricaoProc_1.Text = c.Descricao;
+
+        int nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
+        string clinica = DDLClinicaAlta.SelectedValue;
+        string codProced = c.Cid_Numero;
+        CidRepository.GravaCidPaciente(nr_seq, clinica, codProced);
+
+        CarregaGrid(nr_seq);
+    }
+
+    private void CarregaGrid(int nr_seq)
+    {
+        gvListaProcedimentos.DataSource = CidRepository.CarregaCIDInternacao(nr_seq);
+        gvListaProcedimentos.DataBind();
+    }
+
+
 
 }
