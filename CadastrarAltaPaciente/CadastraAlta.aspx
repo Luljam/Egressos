@@ -102,7 +102,40 @@
                 </asp:SqlDataSource>
             </div>
         </div>
+        <!-- fazer aqui o procedimento-->
         <hr />
+        <div class="row">
+         <div class="col-1">
+                <asp:Label ID="Label4" class="control-label" runat="server" Text="Procedimento:"></asp:Label>
+            </div>
+            <div class="col-2">
+                <asp:Label ID="Label5" class="control-label" runat="server" Text="Data Cirurgia"></asp:Label>
+            </div>            
+        </div>
+        <div class="row">
+        <div class="col-1">
+                <asp:TextBox ID="txtCodigoProcedimento" runat="server" class="form-control"></asp:TextBox>
+            </div>
+            
+            <div class="col-2">
+               
+                <asp:TextBox ID="txtDtCirurgia" runat="server" class="form-control"></asp:TextBox>
+            </div>
+            <div class="col-1">
+                <asp:Button ID="btnPesquisarProcedimento" runat="server" Text="Pesquisar"
+                    class="btn btn-success" onclick="btnPesquisarProcedimento_Click" />
+            </div>
+        
+        </div>
+        <div id="GridProcedimentos">
+            <asp:GridView ID="gvProcedimento" runat="server" class="table">
+            </asp:GridView>        
+        </div>
+        
+        
+         <!-- Fim aqui o procedimento-->
+        <hr />
+        <!-- bloco cadastrar cid-->
         <div class="row">
             <div class="col-1">
                 <asp:Label ID="lbCID" class="control-label" runat="server" Text="CID:"></asp:Label>

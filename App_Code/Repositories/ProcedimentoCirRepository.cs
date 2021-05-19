@@ -13,89 +13,96 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 
 /// <summary>
-/// Summary description for CidRepository
+/// Summary description for ProcedimentoCirRepositorio
 /// </summary>
-public class CidRepository
+public class ProcedimentoCirRepository
 {
-
-    public static List<CID> GetAllCID()
+    public static List<ProcedimentoCir> GetAllProcedimentoCir()
     {
-        var lista = new List<CID>();
+
+        var lista = new List<ProcedimentoCir>();
 
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
 
-            string sqlConsulta = "SELECT *  FROM [Egressos].[dbo].[cid_obito] ORDER BY cid_numero";
+            string sqlConsulta = "SELECT [Procedimento],[Descrição] FROM [Egressos].[dbo].[ProcedimentoCir] order by [Procedimento]";
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = sqlConsulta;
+
             try
             {
                 cnn.Open();
                 SqlDataReader dr1 = cmm.ExecuteReader();
-
                 while (dr1.Read())
                 {
-                    CID c = new CID();
-
-                    c.Cid_Numero = dr1.GetString(0);
-                    c.Descricao = dr1.GetString(1);
-                    lista.Add(c);
+                    ProcedimentoCir p = new ProcedimentoCir();
+                    p.Procedimento = dr1.GetInt32(0);
+                    p.Descricao = dr1.GetString(1);
+                    lista.Add(p);
                 }
+
             }
             catch (Exception ex)
             {
+
                 string error = ex.Message;
             }
+
         }
         return lista;
     }
 
-    public static CID GetCIDPorCodigo(string cid)
+    public static ProcedimentoCir GetProcedimentoCirPorCodigo(int N_procedimentoCir)
     {
-        CID c = new CID();
+        ProcedimentoCir p = new ProcedimentoCir();
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
-
-            string sqlConsulta = "SELECT *  FROM [Egressos].[dbo].[cid_obito] WHERE cid_numero = '" + cid+ "'";
+            string sqlConsulta = "SELECT [Procedimento],[Descrição],[Compet] FROM [Egressos].[dbo].[ProcedimentoCir] where Procedimento = " + N_procedimentoCir + " ";
 
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = sqlConsulta;
+
             try
             {
                 cnn.Open();
                 SqlDataReader dr1 = cmm.ExecuteReader();
 
-                if(dr1.Read())
+                if (dr1.Read())
                 {
-
-                    c.Cid_Numero = dr1.GetString(0);
-                    c.Descricao = dr1.GetString(1);
+                    p.Procedimento = dr1.GetInt32(0);
+                    p.Descricao = dr1.GetString(1);
                 }
             }
             catch (Exception ex)
             {
                 string error = ex.Message;
-            }
-        }
-        return c;
-    }
 
-    public static void GravaCidPaciente(CIDInternacao c)
+            }
+
+        }
+        return p;
+    }
+    public static void GravaProcedimentoCirPaciente(Procedimento_Internacao procedimento)
     {
         
         using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
+
             try
             {
-                string strQuery = @"INSERT INTO [Egressos].[dbo].[cid_intenacao]
-                                    ([nr_seq],[cod_cid],[tipo],[nome_funcionario_cadastrou])"
-                                    + " VALUES (@nr_seq,@cod_cid,@tipo,@nome_funcionario_cadastrou)";
+                string strQuery = @"INSERT INTO [Egressos].[dbo].[procedimento_internacao]
+           ([nr_seq]
+           ,[cod_procedimento]
+           ,[data_cir]
+           ,[nome_funcionario_cadastrou])"
+           + "VALUES (@nr_seq,@cod_procedimento,@data_cir,@nome_funcionario_cadastrou)";
+
 
                 SqlCommand commd = new SqlCommand(strQuery, com);
-                commd.Parameters.Add("@nr_seq", SqlDbType.Int).Value = c.Nr_Seq;
-                commd.Parameters.Add("@cod_cid", SqlDbType.VarChar).Value = c.Cod_CID;
-                commd.Parameters.Add("@tipo", SqlDbType.VarChar).Value = c.Tipo;
-                commd.Parameters.Add("@nome_funcionario_cadastrou", SqlDbType.VarChar).Value = c.Usuario;
+                commd.Parameters.Add("@nr_seq", SqlDbType.Int).Value = procedimento.Nr_Seq;
+                commd.Parameters.Add("@cod_procedimento", SqlDbType.Int).Value = procedimento.Cod_Procedimento;
+                commd.Parameters.Add("@data_cir", SqlDbType.DateTime).Value = procedimento.Data_Cir;
+                commd.Parameters.Add("@nome_funcionario_cadastrou", SqlDbType.VarChar).Value = procedimento.Nome_Funcionario_Cadastrou;
 
                 commd.CommandText = strQuery;
                 com.Open();
@@ -103,22 +110,24 @@ public class CidRepository
             }
             catch (Exception ex)
             {
+
                 string erro = ex.Message;
 
             }
+
         }
+
     }
-
-    public static List<CIDInternacao> CarregaCIDInternacao(int nr_seq)
+    public static List<Procedimento_Internacao> CarregaProcedimentosInternacao(int nr_seq)
     {
-        var lista = new List<CIDInternacao>();
 
+        var lista = new List<Procedimento_Internacao>();
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
-
-            string sqlConsulta = "SELECT * FROM [Egressos].[dbo].[cid_intenacao] WHERE nr_seq = " + nr_seq;
+            string sqlConsulta = "SELECT * FROM [Egressos].[dbo].[procedimento_internacao] WHERE nr_seq = " + nr_seq;
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = sqlConsulta;
+
             try
             {
                 cnn.Open();
@@ -126,21 +135,25 @@ public class CidRepository
 
                 while (dr1.Read())
                 {
-                    CIDInternacao p = new CIDInternacao();
-
+                    Procedimento_Internacao p = new Procedimento_Internacao();
                     p.Id = dr1.GetInt32(0);
                     p.Nr_Seq = dr1.GetInt32(1);
-                    p.Cod_CID = dr1.GetString(2);
-                    p.Tipo = dr1.GetString(3);
-                    p.Usuario = dr1.GetString(4);
+                    p.Cod_Procedimento = dr1.GetInt32(2);
+                    p.Data_Cir = dr1.GetDateTime(3);
+                    p.Nome_Funcionario_Cadastrou = dr1.GetString(4);
                     lista.Add(p);
                 }
+
             }
             catch (Exception ex)
             {
+
                 string error = ex.Message;
             }
+
         }
         return lista;
+
     }
+
 }

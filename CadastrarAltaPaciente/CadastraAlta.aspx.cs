@@ -62,6 +62,7 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
             }
         }
         CarregaGrid(Nr_seq);
+        CarregaGridProcedimentosInternacao(Nr_seq);
     }
 
     protected void Button2_Click(object sender, EventArgs e)
@@ -109,18 +110,48 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
     protected void pesquisarCid_Click(object sender, EventArgs e)
     {
         CID c = new CID();
+        CIDInternacao cidInternacao = new CIDInternacao();
         c = CidRepository.GetCIDPorCodigo(txbcid.Text);
-        int nr_seq = Convert.ToInt32(txtSeqPaciente.Text);
-        string tipo = "Primario"; // depois carregar um dropdow com os tipos
-        string codCid = c.Cid_Numero;
-        CidRepository.GravaCidPaciente(nr_seq, codCid, tipo);
+        cidInternacao.Nr_Seq = Convert.ToInt32(txtSeqPaciente.Text);
+        cidInternacao.Tipo = "Primario"; // depois carregar um dropdow com os tipos
+        cidInternacao.Cod_CID = c.Cid_Numero;
+        cidInternacao.Usuario = "Junior 2";
+        CidRepository.GravaCidPaciente(cidInternacao);
 
-        CarregaGrid(nr_seq);
+        CarregaGrid(cidInternacao.Nr_Seq);
     }
 
     private void CarregaGrid(int nr_seq)
     {
         gvListaCID.DataSource = CidRepository.CarregaCIDInternacao(nr_seq);
         gvListaCID.DataBind();
+    }
+    protected void btnPesquisarProcedimento_Click(object sender, EventArgs e)
+    {
+        int codProcedimento = Convert.ToInt32(txtCodigoProcedimento.Text);
+        ProcedimentoCir p = new ProcedimentoCir();
+        Procedimento_Internacao pI = new Procedimento_Internacao();
+        p = ProcedimentoCirRepository.GetProcedimentoCirPorCodigo(codProcedimento);
+        pI.Nr_Seq = Convert.ToInt32(txtSeqPaciente.Text);
+        pI.Cod_Procedimento = p.Procedimento;
+        pI.Data_Cir = Convert.ToDateTime(txtDtCirurgia.Text);
+        pI.Nome_Funcionario_Cadastrou = "Junior2";
+        try
+        {
+            ProcedimentoCirRepository.GravaProcedimentoCirPaciente(pI);
+
+        }
+        catch (Exception ex)
+        {
+
+            string erro = ex.Message;
+        }
+        CarregaGridProcedimentosInternacao(pI.Nr_Seq);
+    }
+
+    private void CarregaGridProcedimentosInternacao(int p)
+    {
+        gvProcedimento.DataSource = ProcedimentoCirRepository.CarregaProcedimentosInternacao(p);
+        gvProcedimento.DataBind();
     }
 }
