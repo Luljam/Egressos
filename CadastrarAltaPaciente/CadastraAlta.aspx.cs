@@ -12,8 +12,10 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
 
+
 public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
 {
+   
     protected void Page_Load(object sender, EventArgs e)
     {
 

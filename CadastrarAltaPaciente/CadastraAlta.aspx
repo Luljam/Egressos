@@ -9,6 +9,15 @@
             text-align: left;
         }
     </style>
+
+    <script src='<%= ResolveUrl("../bootstrap/jquery/jquery-3.6.0.js") %>' type="text/javascript"></script>
+
+    <script type="text/javascript">
+            $(document).ready(function(){
+              $('#<%=txtDtNasc.ClientID%>').inputmask("99/99/9999"); 
+            });
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- <div class="container-fluid"> -->
@@ -105,35 +114,30 @@
         <!-- fazer aqui o procedimento-->
         <hr />
         <div class="row">
-         <div class="col-1">
+            <div class="col-1">
                 <asp:Label ID="Label4" class="control-label" runat="server" Text="Procedimento:"></asp:Label>
             </div>
             <div class="col-2">
                 <asp:Label ID="Label5" class="control-label" runat="server" Text="Data Cirurgia"></asp:Label>
-            </div>            
+            </div>
         </div>
         <div class="row">
-        <div class="col-1">
+            <div class="col-1">
                 <asp:TextBox ID="txtCodigoProcedimento" runat="server" class="form-control"></asp:TextBox>
             </div>
-            
             <div class="col-2">
-               
                 <asp:TextBox ID="txtDtCirurgia" runat="server" class="form-control"></asp:TextBox>
             </div>
             <div class="col-1">
-                <asp:Button ID="btnPesquisarProcedimento" runat="server" Text="Pesquisar"
-                    class="btn btn-success" onclick="btnPesquisarProcedimento_Click" />
+                <asp:Button ID="btnPesquisarProcedimento" runat="server" Text="Pesquisar" class="btn btn-success"
+                    OnClick="btnPesquisarProcedimento_Click" />
             </div>
-        
         </div>
         <div id="GridProcedimentos">
             <asp:GridView ID="gvProcedimento" runat="server" class="table">
-            </asp:GridView>        
+            </asp:GridView>
         </div>
-        
-        
-         <!-- Fim aqui o procedimento-->
+        <!-- Fim aqui o procedimento-->
         <hr />
         <!-- bloco cadastrar cid-->
         <div class="row">
@@ -143,15 +147,12 @@
             <div class="col-2">
                 <asp:Label ID="Label1" class="control-label" runat="server" Text="TIPO (primario, secundário, terciário)"></asp:Label>
             </div>
-             
         </div>
         <div class="row">
             <div class="col-1">
                 <asp:TextBox ID="txbcid" runat="server" class="form-control"></asp:TextBox>
             </div>
-            
             <div class="col-2">
-               
                 <asp:TextBox ID="txtDtCir_1" runat="server" class="form-control"></asp:TextBox>
             </div>
             <div class="col-1">

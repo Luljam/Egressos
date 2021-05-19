@@ -12,36 +12,30 @@
     <title>Egressos</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-
-    <script type="text/javascript" src="bootstrap/jquery/jquery-1.4.1.min.js"></script>
-
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        <div>
-            <img src="img/HSPM.jpg" />
-            <h3 class="text-center"> 
+        <div>            
+            <asp:Image ID="img1" runat="server" ImageUrl="img/HSPM.jpg" />
+            <h3 class="text-center">
                 Sistema Egressos - Nepi</h3>
         </div>
         <div>
-                <div class="row h-100 justify-content-center align-items-center">
-        
-            <asp:Menu ID="Menu1" runat="server" Style="text-align: center" Width="840px" Orientation="Horizontal"
-                Height="26px">
-                <Items>
-                    <asp:MenuItem Text="Pagina Principal" Value="Pagina Principal" 
-                        NavigateUrl="~/RhPesquisa/RhPesquisa.aspx">
-                    </asp:MenuItem>
-                    <asp:MenuItem Text="Cadastro" Value="Cadastro" 
-                        NavigateUrl="~/CadastrarAltaPaciente/Default.aspx"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/CausaMorte/CausaMorte.aspx" Text="Causa da Morte" 
-                        Value="Causa da Morte">
-                    </asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/ClinicaAltaGerenciar/ClinicaAltaGerenciar.aspx" 
-                        Text="Cadastrar Clinica" Value="Cadastrar Clinica"></asp:MenuItem>
-                </Items>
-            </asp:Menu>
+            <div class="row h-100 justify-content-center align-items-center">
+                <asp:Menu ID="Menu1" runat="server" Style="text-align: center" Width="840px" Orientation="Horizontal"
+                    Height="26px">
+                    <Items>
+                        <asp:MenuItem Text="Pagina Principal" Value="Pagina Principal" NavigateUrl="~/RhPesquisa/RhPesquisa.aspx">
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Cadastro" Value="Cadastro" NavigateUrl="~/CadastrarAltaPaciente/Default.aspx">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/CausaMorte/CausaMorte.aspx" Text="Causa da Morte" Value="Causa da Morte">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/ClinicaAltaGerenciar/ClinicaAltaGerenciar.aspx" Text="Cadastrar Clinica"
+                            Value="Cadastrar Clinica"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
             </div>
         </div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -49,13 +43,11 @@
     </div>
     </form>
 
-    <script type="text/javascript" src="bootstrap/jquery/jquery-3.6.0.js"></script>
+    <script src='<%= ResolveUrl("bootstrap/jquery/jquery-3.6.0.js") %>' type="text/javascript"></script>
 
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script src='<%= ResolveUrl("bootstrap/js/bootstrap.min.js") %>' type="text/javascript"></script>
 
-    <script type="text/javascript" src="bootstrap/jquery/jquery-1.4.1.min.js"></script>
-
-    <script type="text/javascript" src="bootstrap/jquery/maskedinput-1.2.2.js"></script>
+    <script src='<%= ResolveUrl("vendors/dist/inputmask.js") %>' type="text/javascript"></script>
 
 </body>
 </html>

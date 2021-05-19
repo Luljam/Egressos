@@ -82,6 +82,8 @@ public class ProcedimentoCirRepository
         }
         return p;
     }
+
+    //criar excluir
     public static void GravaProcedimentoCirPaciente(Procedimento_Internacao procedimento)
     {
         
