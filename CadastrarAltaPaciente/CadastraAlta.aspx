@@ -9,15 +9,6 @@
             text-align: left;
         }
     </style>
-
-    <script src='<%= ResolveUrl("../bootstrap/jquery/jquery-3.6.0.js") %>' type="text/javascript"></script>
-
-    <script type="text/javascript">
-            $(document).ready(function(){
-              $('#<%=txtDtNasc.ClientID%>').inputmask("99/99/9999"); 
-            });
-    </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- <div class="container-fluid"> -->
@@ -132,6 +123,14 @@
                 <asp:Button ID="btnPesquisarProcedimento" runat="server" Text="Pesquisar" class="btn btn-success"
                     OnClick="btnPesquisarProcedimento_Click" />
             </div>
+            <div class="col-1">
+                <asp:TextBox ID="txtRemoveProcedimento" runat="server"></asp:TextBox>
+            </div>
+            <div class="col-1">
+                <!-- botao aqui-->
+                <asp:Button ID="btnRemoveProced" runat="server" Text="Remover" 
+                    onclick="btnRemoveProced_Click" />
+            </div>
         </div>
         <div id="GridProcedimentos">
             <asp:GridView ID="gvProcedimento" runat="server" class="table">
@@ -159,17 +158,25 @@
                 <asp:Button ID="pesquisarCid" runat="server" Text="Pesquisar" OnClick="pesquisarCid_Click"
                     class="btn btn-success" />
             </div>
-        </div>
-        <div id="gridCirurgias">
-            <asp:GridView ID="gvListaCID" runat="server" class="table">
-            </asp:GridView>
-        </div>
-        <hr />
-        <!--Button CADASTRAR-->
-        <div class="nav justify-content-center m-2">
-            <asp:Button ID="btnCadastrar" runat="server" class="btn btn-primary" Text="Cadastrar"
-                OnClick="Button2_Click" />
-        </div>
+            <div class="col-1">
+                <asp:TextBox ID="txtRemoverGrid" runat="server"></asp:TextBox>
+            </div>
+            <div class="col-1">
+                <asp:Button ID="btnRemoverdoGrid" runat="server" OnClick="btnRemoverdoGrid_Click"
+                    Text="remover" />
+            </div>
+    </div>
+    </div>
+    <div id="gridCirurgias">
+        <asp:GridView ID="gvListaCID" runat="server" class="table">
+        </asp:GridView>
+    </div>
+    <hr />
+    <!--Button CADASTRAR-->
+    <div class="nav justify-content-center m-2">
+        <asp:Button ID="btnCadastrar" runat="server" class="btn btn-primary" Text="Cadastrar"
+            OnClick="Button2_Click" />
+    </div>
     </div>
     <!--</div>-->
 </asp:Content>

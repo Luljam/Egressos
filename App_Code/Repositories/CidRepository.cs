@@ -109,6 +109,59 @@ public class CidRepository
         }
     }
 
+    public static void RemoverProcedimentoPaciente(int id)
+    {
+
+        using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
+        {
+            try
+            {
+                //Delete
+                string strQuery = @"DELETE FROM [Egressos].[dbo].[procedimento_internacao]
+                                     WHERE id= " + id + "";
+
+                SqlCommand commd = new SqlCommand(strQuery, com);
+
+                commd.CommandText = strQuery;
+                com.Open();
+                commd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                string erro = ex.Message;
+
+            }
+        }
+
+    }
+
+
+    public static void  RemoverCidPaciente(int id)
+    {
+
+        using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
+        {
+            try
+            {
+                //Delete
+                string strQuery = @"DELETE FROM [Egressos].[dbo].[cid_intenacao]
+                                  WHERE id= "+id+"";
+
+                SqlCommand commd = new SqlCommand(strQuery, com);
+                
+                commd.CommandText = strQuery;
+                com.Open();
+                commd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                string erro = ex.Message;
+
+            }
+        }
+
+    }
+
     public static List<CIDInternacao> CarregaCIDInternacao(int nr_seq)
     {
         var lista = new List<CIDInternacao>();

@@ -156,4 +156,29 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
         gvProcedimento.DataSource = ProcedimentoCirRepository.CarregaProcedimentosInternacao(p);
         gvProcedimento.DataBind();
     }
+  
+    
+    
+    
+    
+    protected void btnRemoverdoGrid_Click(object sender, EventArgs e)
+    {
+        //CidRepository c = new CidRepository();
+        int id = Convert.ToInt32(txtRemoverGrid.Text);
+        CidRepository.RemoverCidPaciente(id);
+
+        CIDInternacao cidInternacao = new CIDInternacao();
+        cidInternacao.Nr_Seq = Convert.ToInt32(txtSeqPaciente.Text);
+        CarregaGrid(cidInternacao.Nr_Seq);
+      
+
+    }
+    protected void btnRemoveProced_Click(object sender, EventArgs e)
+    {
+        int id = Convert.ToInt32(txtRemoveProcedimento.Text);
+        CidRepository.RemoverProcedimentoPaciente(id);
+        Procedimento_Internacao pI = new Procedimento_Internacao();
+        pI.Nr_Seq = Convert.ToInt32(txtSeqPaciente.Text);
+        CarregaGridProcedimentosInternacao(pI.Nr_Seq);
+    }
 }

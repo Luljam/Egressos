@@ -99,7 +99,6 @@ public class ProcedimentoCirRepository
            ,[nome_funcionario_cadastrou])"
            + "VALUES (@nr_seq,@cod_procedimento,@data_cir,@nome_funcionario_cadastrou)";
 
-
                 SqlCommand commd = new SqlCommand(strQuery, com);
                 commd.Parameters.Add("@nr_seq", SqlDbType.Int).Value = procedimento.Nr_Seq;
                 commd.Parameters.Add("@cod_procedimento", SqlDbType.Int).Value = procedimento.Cod_Procedimento;
