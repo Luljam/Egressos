@@ -15,7 +15,7 @@ using System.Data.SqlClient;
 
 public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
 {
-   
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -156,22 +156,7 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
         gvProcedimento.DataSource = ProcedimentoCirRepository.CarregaProcedimentosInternacao(p);
         gvProcedimento.DataBind();
     }
-  
-    
-    
-    
-    
-    protected void btnRemoverdoGrid_Click(object sender, EventArgs e)
-    {
-        //CidRepository c = new CidRepository();
-        int id = Convert.ToInt32(txtRemoverGrid.Text);
-        CidRepository.RemoverCidPaciente(id);
-        CIDInternacao cidInternacao = new CIDInternacao();
-        cidInternacao.Nr_Seq = Convert.ToInt32(txtSeqPaciente.Text);
-        CarregaGrid(cidInternacao.Nr_Seq);
-      
 
-    }
     protected void btnRemoveProced_Click(object sender, EventArgs e)
     {
         int id = Convert.ToInt32(txtRemoveProcedimento.Text);
@@ -179,5 +164,17 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
         Procedimento_Internacao pI = new Procedimento_Internacao();
         pI.Nr_Seq = Convert.ToInt32(txtSeqPaciente.Text);
         CarregaGridProcedimentosInternacao(pI.Nr_Seq);
+    }
+
+    protected void grdMain_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName.Equals("deletaCid"))
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            int _cod = Convert.ToInt32(gvListaCID.DataKeys[index].Value.ToString());
+            GridViewRow row = gvListaCID.Rows[index];
+            CidRepository.RemoverCidPaciente(_cod);
+        }
+        CarregaGrid(Convert.ToInt32(txtSeqPaciente.Text));
     }
 }
