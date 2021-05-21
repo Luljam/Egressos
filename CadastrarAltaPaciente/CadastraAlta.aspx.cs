@@ -166,7 +166,6 @@ public partial class CadastrarAltaPaciente_CadastraAlta : System.Web.UI.Page
         //CidRepository c = new CidRepository();
         int id = Convert.ToInt32(txtRemoverGrid.Text);
         CidRepository.RemoverCidPaciente(id);
-
         CIDInternacao cidInternacao = new CIDInternacao();
         cidInternacao.Nr_Seq = Convert.ToInt32(txtSeqPaciente.Text);
         CarregaGrid(cidInternacao.Nr_Seq);

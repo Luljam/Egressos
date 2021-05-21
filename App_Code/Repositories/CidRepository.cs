@@ -56,7 +56,7 @@ public class CidRepository
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
 
-            string sqlConsulta = "SELECT *  FROM [Egressos].[dbo].[cid_obito] WHERE cid_numero = '" + cid+ "'";
+            string sqlConsulta = "SELECT *  FROM [Egressos].[dbo].[cid_obito] WHERE cid_numero = '" + cid + "'";
 
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = sqlConsulta;
@@ -65,7 +65,7 @@ public class CidRepository
                 cnn.Open();
                 SqlDataReader dr1 = cmm.ExecuteReader();
 
-                if(dr1.Read())
+                if (dr1.Read())
                 {
 
                     c.Cid_Numero = dr1.GetString(0);
@@ -82,7 +82,7 @@ public class CidRepository
 
     public static void GravaCidPaciente(CIDInternacao c)
     {
-        
+
         using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
             try
@@ -111,17 +111,14 @@ public class CidRepository
 
     public static void RemoverProcedimentoPaciente(int id)
     {
-
         using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
             try
             {
-                //Delete
                 string strQuery = @"DELETE FROM [Egressos].[dbo].[procedimento_internacao]
                                      WHERE id= " + id + "";
 
                 SqlCommand commd = new SqlCommand(strQuery, com);
-
                 commd.CommandText = strQuery;
                 com.Open();
                 commd.ExecuteNonQuery();
@@ -129,26 +126,21 @@ public class CidRepository
             catch (Exception ex)
             {
                 string erro = ex.Message;
-
             }
         }
-
     }
 
-
-    public static void  RemoverCidPaciente(int id)
+    public static void RemoverCidPaciente(int id)
     {
 
         using (SqlConnection com = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EgressosConnectionString"].ToString()))
         {
             try
-            {
-                //Delete
+            {                
                 string strQuery = @"DELETE FROM [Egressos].[dbo].[cid_intenacao]
-                                  WHERE id= "+id+"";
-
+                                  WHERE id= " + id + "";
                 SqlCommand commd = new SqlCommand(strQuery, com);
-                
+
                 commd.CommandText = strQuery;
                 com.Open();
                 commd.ExecuteNonQuery();
@@ -156,10 +148,8 @@ public class CidRepository
             catch (Exception ex)
             {
                 string erro = ex.Message;
-
             }
         }
-
     }
 
     public static List<CIDInternacao> CarregaCIDInternacao(int nr_seq)

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     CodeFile="CadastraAlta.aspx.cs" Inherits="CadastrarAltaPaciente_CadastraAlta"
-    Title="Untitled Page" %>
+    Title="Cadastar Alta Paciente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
@@ -9,9 +9,23 @@
             text-align: left;
         }
     </style>
+
+    <script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
+        type="text/javascript"></script>
+
+    <script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js") %>'
+        type="text/javascript"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <!-- <div class="container-fluid"> -->
+
+    <script type="text/javascript">
+                 $('#<%=txtDtNasc.ClientID %>').mask("99/99/9999");   
+                 $('#<%= txtDtEntrada.ClientID %>').mask("99/99/9999");              
+                 $('#<%=txtDtSaida.ClientID %>').mask("99/99/9999");                
+                 $('#<%=txtDtCirurgia.ClientID %>').mask("99/99/9999"); 
+    </script>
+
     <div class="jumbotron">
         <!-- Form alinhado -->
         <%--<div class="row">
@@ -31,7 +45,6 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <!--  <asp:TextBox ID="TextBox1" runat="server" class="form-control" ></asp:TextBox>-->
                 <asp:TextBox ID="txtSeqPaciente" runat="server" class="form-control" required></asp:TextBox>
                 <!-- required serve para deixar o campo Obrigatório-->
             </div>
@@ -68,6 +81,11 @@
             <div class="col-2">
                 Motivo da Saida
                 <asp:DropDownList ID="DDLmotivoSaida" runat="server" class="form-control">
+                    <asp:ListItem>ALTA MÉDICA</asp:ListItem>
+                    <asp:ListItem>OBITO -24 HORAS</asp:ListItem>
+                    <asp:ListItem>OBITO +24 HORAS</asp:ListItem>
+                    <asp:ListItem>TRANSFERÊNCIA PARA OUTRO HOSPITAL</asp:ListItem>
+                    <asp:ListItem>EVASÃO</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-1">
@@ -80,7 +98,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
+            <div class="col-4">
                 Clinica:
                 <asp:TextBox ID="txtClinica" runat="server" class="form-control"></asp:TextBox>
             </div>
@@ -88,11 +106,11 @@
                 Leito:
                 <asp:TextBox ID="txtLeito" runat="server" class="form-control"></asp:TextBox>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 Enf. Leito:
                 <asp:TextBox ID="txtEnfLeito" runat="server" class="form-control"></asp:TextBox>
             </div>
-            <div class="col-2">
+            <div class="col-4">
                 Clinica Alta:
                 <asp:DropDownList ID="DDLClinicaAlta" runat="server" class="form-control" DataSourceID="SqlDataSource2"
                     DataTextField="descricao" DataValueField="idClinica">
@@ -128,8 +146,7 @@
             </div>
             <div class="col-1">
                 <!-- botao aqui-->
-                <asp:Button ID="btnRemoveProced" runat="server" Text="Remover" 
-                    onclick="btnRemoveProced_Click" />
+                <asp:Button ID="btnRemoveProced" runat="server" Text="Remover" OnClick="btnRemoveProced_Click" />
             </div>
         </div>
         <div id="GridProcedimentos">
@@ -165,7 +182,7 @@
                 <asp:Button ID="btnRemoverdoGrid" runat="server" OnClick="btnRemoverdoGrid_Click"
                     Text="remover" />
             </div>
-    </div>
+        </div>
     </div>
     <div id="gridCirurgias">
         <asp:GridView ID="gvListaCID" runat="server" class="table">
