@@ -9,6 +9,8 @@
             text-align: left;
         }
     </style>
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
     <script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
         type="text/javascript"></script>
@@ -175,17 +177,34 @@
                 <asp:Button ID="pesquisarCid" runat="server" Text="Pesquisar" OnClick="pesquisarCid_Click"
                     class="btn btn-success" />
             </div>
-            <div class="col-1">
-                <asp:TextBox ID="txtRemoverGrid" runat="server"></asp:TextBox>
-            </div>
-            <div class="col-1">
-                <asp:Button ID="btnRemoverdoGrid" runat="server" OnClick="btnRemoverdoGrid_Click"
-                    Text="remover" />
-            </div>
         </div>
     </div>
     <div id="gridCirurgias">
-        <asp:GridView ID="gvListaCID" runat="server" class="table">
+        <asp:GridView ID="gvListaCID" AutoGenerateColumns="False" DataKeyNames="Id" runat="server" 
+                         OnRowCommand="grdMain_RowCommand" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+            <Columns>
+                <asp:BoundField DataField="Id" HeaderText="Código" SortExpression="Id"
+                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                <asp:BoundField DataField="Nr_Seq" HeaderText="Internação" SortExpression="Nr_Seq"
+                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                <asp:BoundField DataField="Cod_Cid" HeaderText="Cid" SortExpression="Cod_Cid"
+                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"
+                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                <asp:BoundField DataField="Usuario" HeaderText="Usuário" SortExpression="Usuario"
+                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                
+                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled" HeaderText="Ações">
+                    <ItemTemplate>
+                        <div class="form-inline">
+                            <asp:LinkButton ID="lbDeleta" CommandName="deletaCid" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                CssClass="btn btn-danger" runat="server">
+                                                    <i class="fa fa-trash-o" title="Excluir"></i> 
+                            </asp:LinkButton>
+                        </div>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
         </asp:GridView>
     </div>
     <hr />
