@@ -50,10 +50,6 @@
                 <asp:TextBox ID="txtSeqPaciente" runat="server" class="form-control" required></asp:TextBox>
                 <!-- required serve para deixar o campo Obrigatório-->
             </div>
-            <div class="col-2">
-                <asp:Button ID="btnPesquisa" class="btn btn-success" runat="server" Text="Pesquisar"
-                    OnClick="btnPesquisa_Click" />
-            </div>
         </div>
         <div class="row">
             <div class="col-6">
@@ -143,16 +139,38 @@
                 <asp:Button ID="btnPesquisarProcedimento" runat="server" Text="Pesquisar" class="btn btn-success"
                     OnClick="btnPesquisarProcedimento_Click" />
             </div>
-            <div class="col-1">
+            <%--<div class="col-1">
                 <asp:TextBox ID="txtRemoveProcedimento" runat="server"></asp:TextBox>
-            </div>
+            </div>--%>
             <div class="col-1">
                 <!-- botao aqui-->
-                <asp:Button ID="btnRemoveProced" runat="server" Text="Remover" OnClick="btnRemoveProced_Click" />
             </div>
         </div>
         <div id="GridProcedimentos">
-            <asp:GridView ID="gvProcedimento" runat="server" class="table">
+            <asp:GridView ID="gvProcedimento" AutoGenerateColumns="False" DataKeyNames="Id" runat="server"
+                OnRowCommand="grdProcedimentoCir_RowCommand" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="Código" SortExpression="Id" ItemStyle-CssClass="hidden-xs"
+                        HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="Nr_Seq" HeaderText="Internação" SortExpression="Nr_Seq"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="Cod_Procedimento" HeaderText="Procedimento" SortExpression="cod_procedimento"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="Data_Cir" HeaderText="Data Cirurgia" SortExpression="data_cir"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="Nome_Funcionario_Cadastrou" HeaderText="Usuário" SortExpression="Usuario"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled" HeaderText="Ações">
+                        <ItemTemplate>
+                            <div class="form-inline">
+                                <asp:LinkButton ID="lbDeleta" CommandName="deletaProcedimento" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                    CssClass="btn btn-danger" runat="server">
+                                <i class="fa fa-trash-o" title="Excluir"></i> 
+                                </asp:LinkButton>
+                            </div>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
             </asp:GridView>
         </div>
         <!-- Fim aqui o procedimento-->
@@ -178,41 +196,39 @@
                     class="btn btn-success" />
             </div>
         </div>
-    </div>
-    <div id="gridCirurgias">
-        <asp:GridView ID="gvListaCID" AutoGenerateColumns="False" DataKeyNames="Id" runat="server" 
-                         OnRowCommand="grdMain_RowCommand" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
-            <Columns>
-                <asp:BoundField DataField="Id" HeaderText="Código" SortExpression="Id"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                <asp:BoundField DataField="Nr_Seq" HeaderText="Internação" SortExpression="Nr_Seq"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                <asp:BoundField DataField="Cod_Cid" HeaderText="Cid" SortExpression="Cod_Cid"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                <asp:BoundField DataField="Usuario" HeaderText="Usuário" SortExpression="Usuario"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                
-                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled" HeaderText="Ações">
-                    <ItemTemplate>
-                        <div class="form-inline">
-                            <asp:LinkButton ID="lbDeleta" CommandName="deletaCid" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                CssClass="btn btn-danger" runat="server">
+        <!--</div>-->
+        <div id="gridCirurgias">
+            <asp:GridView ID="gvListaCID" AutoGenerateColumns="False" DataKeyNames="Id" runat="server"
+                OnRowCommand="grdMain_RowCommand" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="Código" SortExpression="Id" ItemStyle-CssClass="hidden-xs"
+                        HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="Nr_Seq" HeaderText="Internação" SortExpression="Nr_Seq"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="Cod_Cid" HeaderText="Cid" SortExpression="Cod_Cid" ItemStyle-CssClass="hidden-xs"
+                        HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo" ItemStyle-CssClass="hidden-xs"
+                        HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="Usuario" HeaderText="Usuário" SortExpression="Usuario"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled" HeaderText="Ações">
+                        <ItemTemplate>
+                            <div class="form-inline">
+                                <asp:LinkButton ID="lbDeleta" CommandName="deletaCid" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                    CssClass="btn btn-danger" runat="server">
                                                     <i class="fa fa-trash-o" title="Excluir"></i> 
-                            </asp:LinkButton>
-                        </div>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+                                </asp:LinkButton>
+                            </div>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
+        <hr />
+        <!--Button CADASTRAR-->
+        <div class="nav justify-content-center m-2">
+            <asp:Button ID="btnCadastrar" runat="server" class="btn btn-primary" Text="Cadastrar"
+                OnClick="Button2_Click" />
+        </div>
     </div>
-    <hr />
-    <!--Button CADASTRAR-->
-    <div class="nav justify-content-center m-2">
-        <asp:Button ID="btnCadastrar" runat="server" class="btn btn-primary" Text="Cadastrar"
-            OnClick="Button2_Click" />
-    </div>
-    </div>
-    <!--</div>-->
 </asp:Content>
