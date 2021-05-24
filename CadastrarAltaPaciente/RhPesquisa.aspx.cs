@@ -56,14 +56,20 @@ public partial class RhPesquisa : System.Web.UI.Page
             string err1 = ex1.Message;
         }
 
-      //  Bindgrid(prontuario);
+        Bindgrid(prontuario);
     }
 
-    //private void Bindgrid(int prontuario)
-    //{
-    //    GridView1.DataSource = InternacaoDAO.GetListaInternacoePorProntuario(prontuario);        
-    //    GridView1.DataBind();
-    //}
+    private void Bindgrid(int prontuario)
+    {
+        GridViewDadosPaciente.DataSource = InternacaoDAO.GetListaInternacoePorProntuario(prontuario);
+        GridViewDadosPaciente.DataBind();
+    }
 
-    
+
+    protected void grdDadosPacienteSGH_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        int nrSeq = Convert.ToInt32(GridViewDadosPaciente.DataKeys[Convert.ToInt32(e.CommandArgument)].Value.ToString());
+        Response.Redirect("~/CadastrarAltaPaciente/CadastraAlta.aspx?nrSeq="+nrSeq);
+
+    }
 }
